@@ -1,5 +1,4 @@
 import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
 
@@ -13,10 +12,6 @@ class WallServiceTest {
     @Test
     fun id_should_is_not_null() {
 
-        //arrange
-        val realIdAfterAdded = null            //цель
-
-        //act
         val myNewWall = WallService.add(
             Post(
                 5,
@@ -32,18 +27,14 @@ class WallServiceTest {
                 true
             )
         )
+        val idIsNotNull = myNewWall.id
 
-        val idIsNotNull = myNewWall.copy(id = myNewWall.id)
-
-        //assert
-        assertEquals(realIdAfterAdded, idIsNotNull)
-
+        assertNotNull(idIsNotNull)
     }
 
     @Test
     fun should_return_true() {
 
-        //arrange
         val hiWall = WallService.add(
             Post(
                 5,
@@ -59,20 +50,16 @@ class WallServiceTest {
                 true
             )
         )
-        val coincidence: Boolean = true
 
-        //act
         val bibi = WallService.update(hiWall)
 
-        //assert
-        assertEquals(coincidence, bibi)
+        assertTrue(bibi)
     }
 
     @Test
     fun should_return_false() {
-        //arrange
-        val myWall = WallService.add(
-            Post(
+
+        val myPost= Post(
                 95,
                 12,
                 13,
@@ -84,13 +71,9 @@ class WallServiceTest {
                 Likes(45, true, true, true), true,
                 true
             )
-        )
-        val notCoincidence: Boolean = false
 
-        //act
-        val bibi = WallService.update(myWall)
+        val post2 = WallService.update(myPost)
 
-        //assert
-        assertEquals(notCoincidence, bibi)
+        assertFalse(post2)
     }
 }
